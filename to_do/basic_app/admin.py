@@ -1,5 +1,5 @@
 from django.contrib import admin
-from basic_app.models import task
+from basic_app.models import Task
 
 # Register your models here.
-admin.site.register(task)
+admin.site.register(Task)

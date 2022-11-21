@@ -10,7 +10,7 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.username
 
-class task(models.Model):
+class Task(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     description = models.TextField(blank=True)
@@ -23,3 +23,4 @@ class task(models.Model):
 
     class Meta:
         ordering = ['due_date']
+
