@@ -2,7 +2,7 @@
 
 {% block title %}Register Page{% endblock %}
 
-{% block body_block %}
+{% block content %}
 
 
     {% if registered %}
@@ -19,6 +19,5 @@
 
     {% endif %}
 
-
-
-{% endblock %}
+    <p>Already have an account?  <a href="{% url 'basic_app:user_login' %}">Login</a></p>
+{% endblock content %}

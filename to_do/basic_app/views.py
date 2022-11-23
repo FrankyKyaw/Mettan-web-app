@@ -61,18 +61,34 @@ def user_login(request):
 
 class TaskList(ListView):
     model = models.Task
+    def get_context_data(self,**kwargs):
+        context  = super().get_context_data(**kwargs)
+        context['task_list'] = context['task_list'].filter(user=self.request.user)
+        return context
 
 class TaskDetail(DetailView):
    model = models.Task
 
 class TaskCreate(CreateView):
     model = models.Task
-    fields = '__all__'
+    fields = ['title', 'description', 'due_date', 'complete']
+    success_url = reverse_lazy('basic_app:task_list')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(TaskCreate, self).form_valid(form)
+
+class TaskDelete(DeleteView):
+    model = models.Task
     success_url = reverse_lazy('basic_app:task_list')
 
 class TaskUpdate(UpdateView):
-    fields = '__all__'
+    fields = ['title', 'description', 'due_date', 'complete']
     model = models.Task
     success_url = reverse_lazy('basic_app:task_list')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(TaskUpdate, self).form_valid(form)
 
 
