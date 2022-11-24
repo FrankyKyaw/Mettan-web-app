@@ -14,7 +14,7 @@
     <form method="POST">
         {% csrf_token %}
         {{ user_form.as_p }}
-        <input type="submit" value="Register">
+        <input class="button" type="submit" value="Register">
     </form>
 
     {% endif %}
